@@ -47,7 +47,7 @@ group :development do
   # gem "spring"
 end
 
-group :development, :test do
+group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'

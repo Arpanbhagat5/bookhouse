@@ -2,13 +2,6 @@
 
 # Add database_cleaner 
 require 'database_cleaner'
-# Configure shoulda matchers based on GH repo
-Shoulda::Matchers.configure do |config|
- config.integrate do |with|
-   with.test_framework :rspec
-   with.library :rails
- end
-end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
@@ -88,3 +81,11 @@ RSpec.configure do |config|
     end
   end
 end
+
+# Configure shoulda matchers based on GH repo
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+ end

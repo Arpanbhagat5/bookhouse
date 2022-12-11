@@ -26,12 +26,15 @@ module Api
       end
 
       private
+      # Allow mod of only name attribute of category during create
       def category_params
         params.permit(:name)
       end
+
       def set_category
         @category = Category.find(params[:id])
       end
+
     end
   end
  end

@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# used some of the matchers from here: https://github.com/thoughtbot/shoulda-matchers#activemodel-matchers
 RSpec.describe Book, type: :model do
   # Association test
   it { should belong_to(:category) }

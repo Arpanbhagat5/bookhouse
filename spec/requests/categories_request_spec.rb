@@ -1,6 +1,7 @@
 RSpec.describe 'Categories', type: :request do
 
   # Populate test data
+  # Using let! to make sure the data is populated and cached for this block before it is called
   let!(:categories) { create_list(:category, 5) }
   let!(:category_id) { categories.first.id }
 
@@ -19,6 +20,7 @@ RSpec.describe 'Categories', type: :request do
 
   # Test for POST /category
   describe 'POST /category' do
+    # Use let as we need valid_name only for one of the context
     let(:valid_name) { { name: 'Horror' } }
     context 'when the request is valid' do
       before { post '/api/v1/categories', params: valid_name }
@@ -29,6 +31,7 @@ RSpec.describe 'Categories', type: :request do
         expect(response).to have_http_status(201)
       end
     end
+
     context 'when the request is invalid' do
       before { post '/api/v1/categories', params: { name: '' } }
       it 'returns status code 422' do
@@ -45,6 +48,7 @@ RSpec.describe 'Categories', type: :request do
   describe 'DELETE /categories/:id' do
     before { delete "/api/v1/categories/#{category_id}" }
     it 'returns status code 204' do
+      # Enforcing this delete to be a valid/successful request by using before above, hence 204
       expect(response).to have_http_status(204)
     end
   end

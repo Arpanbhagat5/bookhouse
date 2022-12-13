@@ -21,11 +21,11 @@ RSpec.describe 'Categories', type: :request do
   # Test for POST /category
   describe 'POST /category' do
     # Use let as we need valid_name only for one of the context
-    let(:valid_name) { { name: 'Horror' } }
+    let(:valid_name) { { name: 'Art' } }
     context 'when the request is valid' do
       before { post '/api/v1/categories', params: valid_name }
       it 'creates a new category' do
-        expect(json['name']).to eq('Horror')
+        expect(json['name']).to eq('Art')
       end
       it 'returns status code 201' do
         expect(response).to have_http_status(201)

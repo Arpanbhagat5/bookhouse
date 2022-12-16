@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class CategoriesController < ApplicationController
@@ -26,6 +28,7 @@ module Api
       end
 
       private
+
       # Allow mod of only name attribute of category during create
       def category_params
         params.permit(:name)
@@ -34,7 +37,6 @@ module Api
       def set_category
         @category = Category.find(params[:id])
       end
-
     end
   end
- end
+end

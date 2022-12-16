@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BooksRepresenter
   def initialize(books)
     @books = books
@@ -17,5 +19,6 @@ class BooksRepresenter
   end
 
   private
+
   attr_reader :books
 end

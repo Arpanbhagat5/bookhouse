@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReviewRepresenter
   def initialize(review)
     @review = review
@@ -14,5 +16,6 @@ class ReviewRepresenter
   end
 
   private
+
   attr_reader :review
 end

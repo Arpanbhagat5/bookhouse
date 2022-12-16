@@ -1,5 +1,6 @@
-RSpec.describe 'Categories', type: :request do
+# frozen_string_literal: true
 
+RSpec.describe 'Categories', type: :request do
   # Populate test data
   # Using let! to make sure the data is populated and cached for this block before it is called
   let!(:categories) { create_list(:category, 5) }
@@ -39,7 +40,7 @@ RSpec.describe 'Categories', type: :request do
       end
       it 'returns a validation error message' do
         expect(response.body)
-        .to include("is too short (minimum is 3 characters)")
+          .to include('is too short (minimum is 3 characters)')
       end
     end
   end
@@ -52,5 +53,4 @@ RSpec.describe 'Categories', type: :request do
       expect(response).to have_http_status(204)
     end
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe 'Books', type: :request do
   # Populate initial data for test block
   let!(:books) { create_list(:book, 10) }
@@ -48,8 +50,7 @@ RSpec.describe 'Books', type: :request do
       end
     end
     context 'when an invalid request' do
-
-      before { post '/api/v1/books', params: {invalid_param: "random_val"} }
+      before { post '/api/v1/books', params: { invalid_param: 'random_val' } }
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
@@ -70,7 +71,7 @@ RSpec.describe 'Books', type: :request do
       it 'updates the book' do
         updated_item = Book.find(book_id)
         # We look for exact match over regex match in case of valid update
-        expect(updated_item.title).to match("Sultan of Swings")
+        expect(updated_item.title).to match('Sultan of Swings')
       end
     end
     context 'when the book does not exist' do

@@ -5,5 +5,6 @@ FactoryBot.define do
     book { create(:book) }
     title { Faker::Company.catch_phrase }
     comment { Faker::Company.catch_phrase }
+    user { create(:user) }
   end
 end

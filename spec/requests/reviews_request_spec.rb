@@ -4,7 +4,10 @@ RSpec.describe 'Reviews', type: :request do
   # Populate test data
   # Using let! to make sure the data is populated and cached for this block before it is called
   let!(:book) { create(:book) }
+  let!(:user) { create(:user) }
+
   let!(:book_id) { book.id }
+  let!(:user_id) {user.id}
 
   let!(:reviews) { create_list(:review, 5, book_id:) }
   let!(:review_id) { reviews.first.id }
@@ -38,7 +41,7 @@ RSpec.describe 'Reviews', type: :request do
   describe 'POST /books/id/reviews' do
     # Making sure the referenced attribute exists
     let(:valid_attributes) do
-      { title: 'Good book', comment: 'I like it for its humor.', book_id: }
+      { title: 'Good book', comment: 'I like it for its humor.', book_id:, user_id: user_id }
     end
     context 'when request attributes are valid' do
       before { post "/api/v1/books/#{book_id}/reviews", params: valid_attributes }

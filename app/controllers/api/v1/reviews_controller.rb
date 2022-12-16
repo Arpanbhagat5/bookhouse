@@ -44,7 +44,7 @@ module Api
       private
 
       def review_params
-        params.permit(:title, :comment, :book_id, :id)
+        params.permit(:title, :comment, :book_id, :id, :user_id)
       end
 
       def find_book

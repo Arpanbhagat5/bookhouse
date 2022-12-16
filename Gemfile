@@ -54,6 +54,9 @@ group :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'shoulda-matchers'
+  gem 'jwt'
+  gem 'rack-cors'
+  gem 'bcrypt'
 end
 
 # Use rubocop via bundler

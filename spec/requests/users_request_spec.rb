@@ -5,7 +5,8 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :request do
   describe 'POST /register' do
     it 'authenticates to register the user' do
-      post '/api/v1/register', params: { user: { username: 'userA', password: 'mypass' } }
+      # post '/api/v1/register', params: { user: { username: 'userA', password: 'mypass' } }
+      post '/api/v1/register', params: { username: 'userA', password: 'mypass' }
       expect(response).to have_http_status(:created)
       # Try to authenticate the latest user
       expect(json).to eq({

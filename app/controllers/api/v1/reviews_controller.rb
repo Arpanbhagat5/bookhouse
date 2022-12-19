@@ -18,7 +18,7 @@ module Api
         render json: ReviewRepresenter.new(@review).as_json
       end
 
-      # POST /review
+      # POST /books/book_id/review
       def create
         @review = @book.reviews.create(review_params)
         if @review.save
@@ -28,14 +28,14 @@ module Api
         end
       end
 
-      # PUT /reviews/:id
+      # PUT /books/book_id/reviews/:id
       def update
         @review = Review.find(params[:id])
         @review.update(review_params)
         head :no_content
       end
 
-      # DELETE /reviews/:id
+      # DELETE /books/book_id/reviews/:id
       def destroy
         @review = Review.find(params[:id])
         @review.destroy

@@ -12,6 +12,10 @@ Rails.application.routes.draw do
       resources :books, only: %i[index create show update destroy] do
         resources :reviews, only: %i[index create show update destroy]
       end
+
+      # Adding user specific routes as actions
+      post 'login', to: 'authentication#create'
+      post 'register', to: 'users#create'
     end
   end
 end

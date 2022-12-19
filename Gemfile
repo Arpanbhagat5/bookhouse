@@ -50,13 +50,13 @@ group :development do
 end
 
 group :test do
+  gem 'bcrypt'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'shoulda-matchers'
   gem 'jwt'
   gem 'rack-cors'
-  gem 'bcrypt'
+  gem 'shoulda-matchers'
 end
 
 # Use rubocop via bundler

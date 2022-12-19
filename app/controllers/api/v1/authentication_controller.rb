@@ -1,16 +1,19 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class AuthenticationController < ApplicationController
       class AuthenticateError < StandardError; end
 
       # Syntax: rescue_from `exception` with `method`
-      rescue_from ActionController::ParameterMissing, with: :missing_parameter
+      rescue_from ActionController::ParameterMissing, with: :handle_missing_parameter
       rescue_from AuthenticateError, with: :handle_unauthenticated_user
 
       # Using create to mimic user login
       def create
         if valid_user
           raise AuthenticateError unless valid_user.authenticate(params.require(:password))
+
           render json: UserRepresenter.new(valid_user).as_json, status: :created
         else
           render json: { error: 'No such user' }, status: :unauthorized
@@ -18,12 +21,13 @@ module Api
       end
 
       private
+
       def valid_user
         # Syntax: @my_user || @my_user = {SOMETHING}
-        @user ||= User.find_by(username: params.require(:username))
+        @valid_user ||= User.find_by(username: params.require(:username))
       end
 
-      def missing_parameter(error)
+      def handle_missing_parameter(error)
         render json: { error: error.message }, status: :unprocessable_entity
       end
 

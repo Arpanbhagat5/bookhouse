@@ -7,14 +7,22 @@ RSpec.describe 'Reviews', type: :request do
   let!(:user) { create(:user) }
 
   let!(:book_id) { book.id }
-  let!(:user_id) {user.id}
+  let!(:user_id) { user.id }
 
-  let!(:reviews) { create_list(:review, 5, book_id:) }
+  let!(:reviews) do
+    create_list(
+      :review,
+      5,
+      book_id:
+    )
+  end
   let!(:review_id) { reviews.first.id }
 
   describe 'GET /books/id/reviews/id' do
     # make HTTP get request before each example
-    before { get "/api/v1/books/#{book_id}/reviews/#{review_id}" }
+    before do
+      get "/api/v1/books/#{book_id}/reviews/#{review_id}"
+    end
 
     it 'returns single review' do
       expect(json).not_to be_empty
@@ -27,7 +35,9 @@ RSpec.describe 'Reviews', type: :request do
 
   describe 'GET /books/id/reviews' do
     # make HTTP get request before each example
-    before { get "/api/v1/books/#{book_id}/reviews" }
+    before do
+      get "/api/v1/books/#{book_id}/reviews"
+    end
 
     it 'returns all reviews' do
       expect(json).not_to be_empty
@@ -41,17 +51,28 @@ RSpec.describe 'Reviews', type: :request do
   describe 'POST /books/id/reviews' do
     # Making sure the referenced attribute exists
     let(:valid_attributes) do
-      { title: 'Good book', comment: 'I like it for its humor.', book_id:, user_id: user_id }
+      {
+        title: 'Good book',
+        comment: 'I like it for its humor.',
+        book_id:,
+        user_id:
+      }
     end
     context 'when request attributes are valid' do
-      before { post "/api/v1/books/#{book_id}/reviews", params: valid_attributes }
+      before do
+        post "/api/v1/books/#{book_id}/reviews",
+             params: valid_attributes
+      end
       it 'returns status code 201' do
         expect(response).to have_http_status(201)
       end
     end
 
     context 'when an invalid request' do
-      before { post "/api/v1/books/#{book_id}/reviews", params: { invalid_param: 'random_val' } }
+      before do
+        post "/api/v1/books/#{book_id}/reviews",
+             params: { invalid_param: 'random_val' }
+      end
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
@@ -64,10 +85,17 @@ RSpec.describe 'Reviews', type: :request do
 
   describe 'PUT /reviews/:id' do
     let(:valid_attributes) do
-      { id: review_id, title: 'Recommending to friends',
-        comment: 'Pretty amusing stuff', book_id: }
+      {
+        id: review_id,
+        title: 'Recommending to friends',
+        comment: 'Pretty amusing stuff',
+        book_id:
+      }
     end
-    before { put "/api/v1/books/#{book_id}/reviews/#{review_id}", params: valid_attributes }
+    before do
+      put "/api/v1/books/#{book_id}/reviews/#{review_id}",
+          params: valid_attributes
+    end
     context 'when review exists' do
       it 'returns status code 204' do
         expect(response).to have_http_status(204)
@@ -90,7 +118,9 @@ RSpec.describe 'Reviews', type: :request do
   end
 
   describe 'DELETE /books/id/reviews/:id' do
-    before { delete "/api/v1/books/#{book_id}/reviews/#{review_id}" }
+    before do
+      delete "/api/v1/books/#{book_id}/reviews/#{review_id}"
+    end
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
     end

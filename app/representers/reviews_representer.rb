@@ -18,5 +18,6 @@ class ReviewsRepresenter
   end
 
   private
+
   attr_reader :reviews
 end

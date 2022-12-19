@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class UsersController < ApplicationController
       # Use Create to register new user
       def create
         user = User.create(user_params)
-          if user.save
+        if user.save
           render json: UserRepresenter.new(user).as_json, status: :created
         else
           render json: { error: user.errors.full_messages.first }, status: :unprocessable_entity
@@ -12,6 +14,7 @@ module Api
       end
 
       private
+
       def user_params
         params.require(:user).permit(:username, :password)
       end

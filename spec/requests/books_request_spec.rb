@@ -41,16 +41,27 @@ RSpec.describe 'Books', type: :request do
     # Making sure the referenced attribute exists
     let!(:book_genre) { create(:category) }
     let(:valid_attributes) do
-      { title: 'Animal Farm', author: 'George Orwell', price: '100', category_id: book_genre.id }
+      {
+        title: 'Animal Farm',
+        author: 'George Orwell',
+        price: '100',
+        category_id: book_genre.id
+      }
     end
     context 'when request attributes are valid' do
-      before { post '/api/v1/books', params: valid_attributes }
+      before do
+        post '/api/v1/books',
+             params: valid_attributes
+      end
       it 'returns status code 201' do
         expect(response).to have_http_status(201)
       end
     end
     context 'when an invalid request' do
-      before { post '/api/v1/books', params: { invalid_param: 'random_val' } }
+      before do
+        post '/api/v1/books',
+             params: { invalid_param: 'random_val' }
+      end
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
@@ -63,7 +74,10 @@ RSpec.describe 'Books', type: :request do
 
   describe 'PUT /books/:id' do
     let(:valid_attributes) { { title: 'Sultan of Swings' } }
-    before { put "/api/v1/books/#{book_id}", params: valid_attributes }
+    before do
+      put "/api/v1/books/#{book_id}",
+          params: valid_attributes
+    end
     context 'when book exists' do
       it 'returns status code 204' do
         expect(response).to have_http_status(204)
@@ -75,6 +89,7 @@ RSpec.describe 'Books', type: :request do
       end
     end
     context 'when the book does not exist' do
+      # Since ids start with 1 be default, 0 will error out
       let(:book_id) { 0 }
       it 'returns status code 404' do
         expect(response).to have_http_status(404)

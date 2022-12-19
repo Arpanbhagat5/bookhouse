@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserRepresenter
   def initialize(user)
     @user = user
@@ -10,6 +12,8 @@ class UserRepresenter
       token: AuthenticationTokenService.invoke(user.id)
     }
   end
+
   private
+
   attr_reader :user
 end

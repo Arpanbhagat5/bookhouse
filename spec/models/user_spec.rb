@@ -3,10 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  # Another way of setting associations apart
   describe 'Associations' do
     it { should have_many(:reviews) }
   end
 
+  # Validation tests
   it { should validate_presence_of(:username) }
   it { should validate_uniqueness_of(:username) }
   it {

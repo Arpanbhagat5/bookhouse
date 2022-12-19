@@ -1,6 +1,7 @@
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'db/schema.rb'
 
 Metrics/MethodLength:
   Exclude:

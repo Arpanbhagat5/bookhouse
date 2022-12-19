@@ -13,5 +13,6 @@ class CategoryRepresenter
   end
 
   private
+
   attr_reader :category
 end

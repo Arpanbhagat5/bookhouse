@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 class AuthenticationTokenService
-  HMAC_SECRET = Rails.application.secrets.secret_key_base
+  # Define constants
   # Try constant with freeze
-  ALGORITHM_TYPE = 'HS256'.freeze
+  ALGORITHM_TYPE = 'HS256'
+  HMAC_SECRET = Rails.application.secrets.secret_key_base
 
   def self.invoke(user_id)
-    exp = 24.hours.from_now.to_i
-    payload = { 
-      user_id: user_id,
-      exp: exp
+    expiry = 24.hours.from_now.to_i
+    payload = {
+      user_id:,
+      expiry:
     }
     JWT.encode payload, HMAC_SECRET, ALGORITHM_TYPE
   end
@@ -24,7 +27,7 @@ class AuthenticationTokenService
   end
 
   def self.expired(payload)
-    Time.now > Time.at(payload['exp'])
+    Time.now > Time.at(payload['expiry'])
   end
 
   def self.expired_token

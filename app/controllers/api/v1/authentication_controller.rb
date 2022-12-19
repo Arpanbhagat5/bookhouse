@@ -9,16 +9,16 @@ module Api
 
       # Using create to mimic user login
       def create
-        if is_user_valid
-          raise AuthenticateError unless user.authenticate(params.require(:password))
-          render json: UserRepresenter.new(user).as_json, status: :created
+        if valid_user
+          raise AuthenticateError unless valid_user.authenticate(params.require(:password))
+          render json: UserRepresenter.new(valid_user).as_json, status: :created
         else
           render json: { error: 'No such user' }, status: :unauthorized
         end
       end
 
       private
-      def is_user_valid
+      def valid_user
         # Syntax: @my_user || @my_user = {SOMETHING}
         @user ||= User.find_by(username: params.require(:username))
       end

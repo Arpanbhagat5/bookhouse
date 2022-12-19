@@ -3,7 +3,7 @@
 module Api
   module V1
     class CategoriesController < ApplicationController
-      before_action :set_category, only: :destroy
+      before_action :set_category, only: %i[destroy update]
 
       # GET /categories
       def index
@@ -19,6 +19,12 @@ module Api
         else
           render json: @category.errors, status: :unprocessable_entity
         end
+      end
+
+      # PUT /categories/:id
+      def update
+        @category.update(category_params)
+        head :no_content
       end
 
       # DELETE /categories/:id

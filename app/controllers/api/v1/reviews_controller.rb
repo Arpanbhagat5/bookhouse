@@ -3,6 +3,7 @@
 module Api
   module V1
     class ReviewsController < ApplicationController
+      # before_action :authenticate_request!
       before_action :find_book
 
       # GET /books/book_id/reviews

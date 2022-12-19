@@ -21,7 +21,7 @@ class AuthenticationTokenService
     false
   end
 
-  # Redundant method
+  # To be used in checking API auth
   def self.valid_payload(payload)
     !expired(payload)
   end

@@ -44,6 +44,7 @@ module Api
 
       private
 
+      # #TODO: Handle usage of user_id for POST and PUT separately
       def review_params
         params.permit(:title, :comment, :book_id, :id, :user_id)
       end

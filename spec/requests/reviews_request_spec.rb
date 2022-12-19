@@ -83,7 +83,7 @@ RSpec.describe 'Reviews', type: :request do
     end
   end
 
-  describe 'PUT /reviews/:id' do
+  describe 'PUT /books/id/reviews/:id' do
     let(:valid_attributes) do
       {
         id: review_id,

@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+# Got rid of this by using `require: true` in gemfile
+# require 'jwt'
+
 class AuthenticationTokenService
   # Define constants
   # Try constant with freeze
-  ALGORITHM_TYPE = 'HS256'
   HMAC_SECRET = Rails.application.secrets.secret_key_base
+  ALGORITHM_TYPE = 'HS256'.freeze
 
   def self.invoke(user_id)
     expiry = 24.hours.from_now.to_i

@@ -54,7 +54,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'jwt'
+  gem 'jwt', require: true
   gem 'rack-cors'
   gem 'shoulda-matchers'
 end

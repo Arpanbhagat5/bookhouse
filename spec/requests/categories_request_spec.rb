@@ -4,7 +4,7 @@ RSpec.describe 'Categories', type: :request do
   # Populate test data
   # Using let! to make sure the data is populated and cached for this block before it is called
   let!(:categories) { create_list(:category, 5) }
-  let!(:category_id) { categories.first.id }
+  let!(:category_id) { categories.last.id }
 
   # Test for GET /categories
   describe 'GET /categories' do
@@ -22,11 +22,11 @@ RSpec.describe 'Categories', type: :request do
   # Test for POST /category
   describe 'POST /category' do
     # Use let as we need valid_name only for one of the context
-    let(:valid_name) { { name: 'Art' } }
+    let(:valid_name) { { name: 'Judicial Obligations' } }
     context 'when the request is valid' do
       before { post '/api/v1/categories', params: valid_name }
       it 'creates a new category' do
-        expect(json['name']).to eq('Art')
+        expect(json['name']).to eq('Judicial Obligations')
       end
       it 'returns status code 201' do
         expect(response).to have_http_status(201)

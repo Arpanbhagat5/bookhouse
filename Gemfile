@@ -57,6 +57,7 @@ group :test do
   gem 'jwt', require: true
   gem 'rack-cors'
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false, group: :test
 end
 
 # Use rubocop via bundler

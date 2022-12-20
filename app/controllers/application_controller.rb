@@ -17,7 +17,6 @@ class ApplicationController < ActionController::API
     invalid_authentication unless @current_user
   end
 
-
   private
 
   # Helper to extract user_id from payload
@@ -38,5 +37,4 @@ class ApplicationController < ActionController::API
   def invalid_authentication
     render json: { error: 'You will need to login first' }, status: :unauthorized
   end
-
 end

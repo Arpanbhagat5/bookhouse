@@ -5,9 +5,9 @@
 
 class AuthenticationTokenService
   # Define constants
-  # Try constant with freeze
+  # Try constant with freeze -> rubocop cleans it out
   HMAC_SECRET = Rails.application.secrets.secret_key_base
-  ALGORITHM_TYPE = 'HS256'.freeze
+  ALGORITHM_TYPE = 'HS256'
 
   def self.invoke(user_id)
     expiry = 24.hours.from_now.to_i
